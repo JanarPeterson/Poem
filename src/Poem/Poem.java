@@ -1,6 +1,7 @@
 package Poem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Poem {
@@ -21,8 +22,11 @@ public class Poem {
 	
 	public boolean hasWord(String word){
 		for (String i : this.poem) {
-			if (i.toLowerCase().contains(word.toLowerCase())) {
-				return true;
+			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
+			for (String j : line) {
+				if (j.toLowerCase().equals(word.toLowerCase())) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -31,8 +35,11 @@ public class Poem {
 	public int countWord(String word){
 		int counter = 0;
 		for (String i : this.poem) {
-			if (i.toLowerCase().contains(word.toLowerCase())) {
-				counter++;
+			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
+			for (String j : line) {
+				if (j.toLowerCase().equals(word.toLowerCase())) {
+					counter++;
+				}
 			}
 		}
 		return counter;
@@ -41,12 +48,13 @@ public class Poem {
 	public int firstAppear(String word){
 		int row = 1;
 		for (String i : this.poem) {
-			if (i.toLowerCase().contains(word.toLowerCase())) {
-				return row;
+			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
+			for (String j : line) {
+				if (j.toLowerCase().equals(word.toLowerCase())) {
+					return row;
+				}
 			}
-			else{
 			row++;
-			}
 		}
 		return -1;
 	}
@@ -55,14 +63,15 @@ public class Poem {
 		int row = 1;
 		List<Integer> rows = new ArrayList<>();
 		for (String i : this.poem) {
-			if (i.toLowerCase().contains(word.toLowerCase())) {
-				rows.add(row);
+			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
+			for (String j : line) {
+				if (j.toLowerCase().equals(word.toLowerCase())) {
+					rows.add(row);
+				}
 			}
 			row++;
 		}
-		if (rows.isEmpty()) {
-			rows.add(-1);
-		}
+	
 		return rows;
 	}
 	
@@ -70,13 +79,13 @@ public class Poem {
 		int row = 1;
 		List<String> rows = new ArrayList<>();
 		for (String i : this.poem) {
-			if (i.toLowerCase().contains(word.toLowerCase())) {
-				rows.add(i);
+			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
+			for (String j : line) {
+				if (j.toLowerCase().equals(word.toLowerCase())) {
+					rows.add(i);
+				}
 			}
 			row++;
-		}
-		if (rows.isEmpty()) {
-			rows.add("no match");
 		}
 		return rows;
 	}

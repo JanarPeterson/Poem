@@ -42,7 +42,7 @@ public class PoemTests {
 	@Test
 	public void doesNotContain(){
 		Poem poem = new Poem(luuletus);
-		assertThat(poem.rowsAppear("non").toString(), is("[-1]"));
+		assertThat(poem.firstAppear("non"), is(-1));
 	}
 	
 	@Test
