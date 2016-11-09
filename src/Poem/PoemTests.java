@@ -36,7 +36,7 @@ public class PoemTests {
 	@Test
 	public void linesThatContain(){
 		Poem poem = new Poem(luuletus);
-		assertThat(poem.rowsAppear("kui").toString(), is("[1, 3]"));
+		assertThat(poem.rowsAppear("kui"), is(Arrays.asList(1, 3)));
 	}
 
 	@Test
@@ -48,13 +48,13 @@ public class PoemTests {
 	@Test
 	public void wordAppeardRows(){
 		Poem poem = new Poem(luuletus);
-		assertThat(poem.appearedRows("kiusab").toString(), is("[Kui sind kiusab kurat]"));
+		assertThat(poem.appearedRows("sind"), is(Arrays.asList(luuletus[0], luuletus[2])));
 	}
 	
 
 	@Test
 	public void returnEmptyList(){
 		Poem poem = new Poem(luuletus);
-		assertThat(poem.appearedRows("kiues").toString(), is("[no match]"));
+		assertThat(poem.appearedRows("kiues"), is(Arrays.asList()) );
 	}
 }
