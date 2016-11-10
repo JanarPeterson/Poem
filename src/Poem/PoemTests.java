@@ -53,7 +53,7 @@ public class PoemTests {
 	
 
 	@Test
-	public void returnEmptyList(){
+	public void noAppeardRows(){
 		Poem poem = new Poem(luuletus);
 		assertThat(poem.appearedRows("kiues"), is(Arrays.asList()) );
 	}

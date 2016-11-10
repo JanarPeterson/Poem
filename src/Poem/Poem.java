@@ -21,9 +21,8 @@ public class Poem {
 	}
 	
 	public boolean hasWord(String word){
-		for (String i : this.poem) {
-			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
-			for (String j : line) {
+		for (String line : this.poem) {
+			for (String j : line.replaceAll("[,:!?.]","").split(" ")) {
 				if (j.toLowerCase().equals(word.toLowerCase())) {
 					return true;
 				}
@@ -47,9 +46,8 @@ public class Poem {
 	
 	public int firstAppear(String word){
 		int row = 1;
-		for (String i : this.poem) {
-			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
-			for (String j : line) {
+		for (String line : this.poem) {
+			for (String j : line.replaceAll("[,:!?.]","").split(" ")) {
 				if (j.toLowerCase().equals(word.toLowerCase())) {
 					return row;
 				}
@@ -62,9 +60,8 @@ public class Poem {
 	public List<Integer> rowsAppear(String word){
 		int row = 1;
 		List<Integer> rows = new ArrayList<>();
-		for (String i : this.poem) {
-			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
-			for (String j : line) {
+		for (String line : this.poem) {
+			for (String j : line.replaceAll("[,:!?.]","").split(" ")) {
 				if (j.toLowerCase().equals(word.toLowerCase())) {
 					rows.add(row);
 				}
@@ -78,11 +75,10 @@ public class Poem {
 	public List<String> appearedRows(String word){
 		int row = 1;
 		List<String> rows = new ArrayList<>();
-		for (String i : this.poem) {
-			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
-			for (String j : line) {
+		for (String line : this.poem) {
+			for (String j : line.replaceAll("[,:!?.]","").split(" ")) {
 				if (j.toLowerCase().equals(word.toLowerCase())) {
-					rows.add(i);
+					rows.add(line);
 				}
 			}
 			row++;
