@@ -1,7 +1,7 @@
 package Poem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 public class Poem {
@@ -22,8 +22,8 @@ public class Poem {
 	
 	public boolean hasWord(String word){
 		for (String line : this.poem) {
-			for (String j : line.replaceAll("[,:!?.]","").split(" ")) {
-				if (j.toLowerCase().equals(word.toLowerCase())) {
+			for (String j : splitLine(line)) {
+				if (compareWords(word, j)) {
 					return true;
 				}
 			}
@@ -34,9 +34,8 @@ public class Poem {
 	public int countWord(String word){
 		int counter = 0;
 		for (String i : this.poem) {
-			ArrayList<String> line = new ArrayList<String>(Arrays.asList(i.replaceAll("[,:!?.]","").split(" ")));
-			for (String j : line) {
-				if (j.toLowerCase().equals(word.toLowerCase())) {
+			for (String j : splitLine(i)) {
+				if (compareWords(word, j)) {
 					counter++;
 				}
 			}
@@ -47,8 +46,8 @@ public class Poem {
 	public int firstAppear(String word){
 		int row = 1;
 		for (String line : this.poem) {
-			for (String j : line.replaceAll("[,:!?.]","").split(" ")) {
-				if (j.toLowerCase().equals(word.toLowerCase())) {
+			for (String j : splitLine(line)) {
+				if (compareWords(word, j)) {
 					return row;
 				}
 			}
@@ -61,8 +60,8 @@ public class Poem {
 		int row = 1;
 		List<Integer> rows = new ArrayList<>();
 		for (String line : this.poem) {
-			for (String j : line.replaceAll("[,:!?.]","").split(" ")) {
-				if (j.toLowerCase().equals(word.toLowerCase())) {
+			for (String j : splitLine(line)) {
+				if (compareWords(word, j)) {
 					rows.add(row);
 				}
 			}
@@ -71,18 +70,26 @@ public class Poem {
 	
 		return rows;
 	}
+
+	private String[] splitLine(String line) {
+		return line.replaceAll("[,:!?.]","").split(" ");
+	}
 	
 	public List<String> appearedRows(String word){
-		int row = 1;
+
 		List<String> rows = new ArrayList<>();
 		for (String line : this.poem) {
-			for (String j : line.replaceAll("[,:!?.]","").split(" ")) {
-				if (j.toLowerCase().equals(word.toLowerCase())) {
+			for (String j : splitLine(line)) {
+				if (compareWords(word, j)) {
 					rows.add(line);
 				}
 			}
-			row++;
+
 		}
 		return rows;
+	}
+
+	private boolean compareWords(String word1, String word2) {
+		return word2.toLowerCase().equals(word1.toLowerCase());
 	}
 }
